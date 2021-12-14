@@ -2,11 +2,14 @@ class Snowflakes {
   int gravity = 1;
   ArrayList<Snowflake> snowflakes;
   boolean sparkleEnabled;
+  ArrayList<Color> snowflakeColors;
   
   public Snowflakes(){
     snowflakes = new ArrayList<Snowflake>();
     this.sparkleEnabled = false;
-    
+    snowflakeColors = new ArrayList<Color>();
+    snowflakeColors.add(new Color(#FFFFFF));
+
     addSnowflake();
   }
 
@@ -17,12 +20,18 @@ class Snowflakes {
     addSnowflake();
   }
   
+  public void addSnowflakeColor(color c){
+    this.snowflakeColors.add(new Color(c));
+
+  }
+  
   public void addSnowflake() {
     float x = random(width);
     float y = -60;
     float w = random(20, 60);
     
-    Snowflake flake = new Snowflake( x, y, w, this.gravity);
+    color snowflakeColor = snowflakeColors.get( int(random(snowflakeColors.size())) ).c;
+    Snowflake flake = new Snowflake( x, y, w, this.gravity, snowflakeColor);
     flake.setSparkle(this.sparkleEnabled);
     
     snowflakes.add( flake );
@@ -48,6 +57,14 @@ class Snowflakes {
       }
     }
   }
+  
+  class Color {
+    color c;
+    
+    public Color(color c) {
+      this.c = c;
+    }
+  }
 }
 
 class Snowflake {
@@ -60,15 +77,15 @@ class Snowflake {
   float rotateSpeedDegrees;
   boolean sparkle;
   color snowflakeColor;
-  color[] snowflakeColors = { #FFFFFF, #1F1FFF, #DBDFE0 };
+ 
 
-  public Snowflake(float x, float y, float w, float gravity) {
+  public Snowflake(float x, float y, float w, float gravity, color snowflakeColor) {
     this.x = x;
     this.y = y;
     this.w = w;
     this.r = 0;
     this.gravity = gravity;
-    this.snowflakeColor = snowflakeColors[ int(random(snowflakeColors.length)) ];
+    this.snowflakeColor = snowflakeColor;
     
     this.fallSpeed = random(0.0, 1.0);
     this.rotateSpeedDegrees = random(0.0, 3.0);

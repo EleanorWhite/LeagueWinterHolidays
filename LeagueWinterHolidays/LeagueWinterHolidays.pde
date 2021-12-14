@@ -44,7 +44,8 @@ void draw(){
   
   // EXTRA:
   // * See if you can figure out how to add wind to the falling snow
-  // * See if you can figure out hwo to make the snowflakes sparkle
+  // * See if you can figure out how to make the snowflakes sparkle
   // * See if you can add snow men of different shapes and sizes
+  // * See if you can add different possible colors for the snowflakes (note: the colors will not change if you have the snowflakes sparkling)
 
 }
